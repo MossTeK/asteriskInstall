@@ -19,7 +19,7 @@ This script installs Asterisk 18 and FreePBX 16 on an ubuntu 22.04 instance,
 3. **Run the script with root privileges:**
 
     ```bash
-    sudo ./asteriskInstall.sh
+    sudo ./install.sh
     ```
 
 ## What the Script Does
