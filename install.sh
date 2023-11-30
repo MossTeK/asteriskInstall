@@ -1,10 +1,10 @@
 #!/usr/bin/bash
-
-installLog=($PWD"/install.log")
+touch installLog.txt
+installLog="$(dirname "$(readlink -f "$0")")/installLog.txt"
 
 # Check if script is running as root
 if [ "$(id -u)" -ne 0 ]; then
-    echo "This script must be run as root. Exiting..." | tee install.log
+    echo "This script must be run as root. Exiting..." | tee $installLog
     exit 1
 fi
 
