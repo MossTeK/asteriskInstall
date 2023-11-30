@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
-touch ./install.log
-installLog="./install.log"
+installLog=($PWD"/install.log")
 
 # Check if script is running as root
 if [ "$(id -u)" -ne 0 ]; then
@@ -13,8 +12,8 @@ fi
 function main() {
     
     for arg in "$@"; do
-        $arg
-        if $? > $installLog; then
+        $arg | tee $installLog
+        if $? >> $installLog; then
            echo "ran $arg"
         else
             echo "unable to run $arg"
@@ -34,7 +33,7 @@ function installDependencies() {
         if ! dpkg -l | grep -o "$arg"; then
             apt -y install "$arg"
         else   
-            echo "package:$arg is already installed" | tee $installLog
+            echo "package:$arg is already installed"
         fi
     done
     #upgrade once done
@@ -146,5 +145,5 @@ function configureNetwork() {
     systemctl start fail2ban 
 }
 
-installDependencies "libedit-dev" "nodejs" "npm" "libapache2-mod-php7.4" "php7.4" "php7.4-mysql" "php7.4-cli" "php7.4-common" "php7.4-imap" "php7.4-ldap" "php7.4-xml" "php7.4-fpm" "php7.4-curl" "php7.4-mbstring" "php7.4-zip" "php7.4-gd" "php7.4-gettext" "php7.4-xml" "php7.4-json" "php7.4-snmp" "lsb-release" "ca-certificates" "apt-transport-https" "software-properties-common" "gnupg2" "git" "curl" "wget" "libnewt-dev" "libssl-dev" "libncurses5-dev" "subversion" "libsqlite3-dev" "build-essential" "libjansson-dev" "libxml2-dev" "uuid-dev" "mariadb-server" "apache2";
+installDependencies "libedit-dev" "nodejs" "npm" "libapache2-mod-php7.4" "php7.4" "php7.4-mysql" "php7.4-cli" "php7.4-common" "php7.4-imap" "php7.4-ldap" "php7.4-xml" "php7.4-fpm" "php7.4-curl" "php7.4-mbstring" "php7.4-zip" "php7.4-gd" "php7.4-gettext" "php7.4-xml" "php7.4-json" "php7.4-snmp" "lsb-release" "ca-certificates" "apt-transport-https" "software-properties-common" "gnupg2" "git" "curl" "wget" "libnewt-dev" "libssl-dev" "libncurses5-dev" "subversion" "libsqlite3-dev" "build-essential" "libjansson-dev" "libxml2-dev" "uuid-dev" "mariadb-server" "apache2" | tee $installLog
 main "installAsterisk" "installApache" "installFreePBX" "configureNetwork"
