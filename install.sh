@@ -17,6 +17,7 @@ function main() {
            echo "ran $arg"
         else
             echo "unable to run $arg"
+        fi
     done
 
 }
