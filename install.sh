@@ -14,9 +14,10 @@ function main() {
     for arg in "$@"; do
         $arg | tee $installLog
         if $? >> $installLog; then
-           echo "ran $arg"
+            echo "ran $arg"
         else
             echo "unable to run $arg"
+        fi
     done
 
 }
