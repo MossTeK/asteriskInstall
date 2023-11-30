@@ -13,7 +13,7 @@ This script installs Asterisk 18 and FreePBX 16 on an ubuntu 22.04 instance,
 2. **Make the script executable:**
 
     ```bash
-    chmod +x install-freepbx.sh
+    chmod +x install.sh
     ```
 
 3. **Run the script with root privileges:**
@@ -32,7 +32,7 @@ This script installs Asterisk 18 and FreePBX 16 on an ubuntu 22.04 instance,
 
 ## Logging
 
-The script creates an `install.log` file to log the installation process. Any errors encountered during the installation will be recorded in this file.
+The script creates an `installLog.txt` file to log the installation process. Any errors encountered during the installation will be recorded in this file.
 
 ## Notes
 
